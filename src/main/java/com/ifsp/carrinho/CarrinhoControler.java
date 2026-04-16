@@ -1,6 +1,7 @@
 package com.ifsp.carrinho;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -43,5 +44,44 @@ public class CarrinhoControler {
         model.addAttribute("vazio", vazio);
         model.addAttribute("produtos", produtos);
         return "carrinho.html";
+    }
+
+    @GetMapping("/formDeleteCarrinho")
+    public String formDeleteCarrinho() {
+
+        return "formDeleteCarrinho.html";
+    }
+
+    @PostMapping("/removerProduto")
+    public String removerProduto(@RequestParam int id) {
+        Iterator<Produto> produtoIterator = produtos.iterator();
+
+        while (produtoIterator.hasNext()) {
+            Produto nextProduto = produtoIterator.next();
+            if (nextProduto.getId() == id) {
+                produtoIterator.remove();
+            }
+        }
+        return "redirect:/carrinho";
+    }
+
+    @PostMapping("/addQuant")
+    public String addQuant(@RequestParam int id) {
+
+        for (Produto produto : produtos) {
+            produto.setQuantidade(produto.getQuantidade() + 1);
+        }
+
+        return "redirect:/carrinho";
+    }
+
+    @PostMapping("/rmQuant")
+    public String rmQuant(@RequestParam int id) {
+
+        for (Produto produto : produtos) {
+            produto.setQuantidade(produto.getQuantidade() - 1);
+        }
+
+        return "redirect:/carrinho";
     }
 }

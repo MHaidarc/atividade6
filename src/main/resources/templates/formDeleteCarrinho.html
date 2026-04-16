@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>deletar carrinho</title>
+</head>
+
+<body>
+    <form th:action="@{/removerProduto}" th:method="post">
+        <label for="id">Insira o ID:</label>
+        <input type="number" th:name="id">
+        <button type="submit">Remover</button>
+    </form>
+
+
+    <form th:action="@{/addQuant}" th:method="post">
+        <label for="id">Insira o ID:</label>
+        <input type="number" th:name="id">
+        <button type="submit">+</button>
+    </form>
+
+    <form th:action="@{/rmQuant}" th:method="post">
+        <label for="id">Insira o ID:</label>
+        <input type="number" th:name="id">
+        <button type="submit">-</button>
+    </form>
+
+</body>
+
+</html>
