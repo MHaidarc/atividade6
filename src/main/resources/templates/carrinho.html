@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
     <h1>visualiza os baguio ai</h1>
     <p th:if="${vazio}">ta vazio vei</p>
@@ -25,7 +27,15 @@
                 <td th:text="${produto.preco}"></td>
                 <td th:text="${produto.quantidade}"></td>
             </tr>
+            <tr>
+                <td>X</td>
+                <td><strong>total:</strong></td>
+                <td th:text="${precoTotal}"></td>
+                <td th:text="${quantTotal}"></td>
+            </tr>
         </tbody>
     </table>
+    <a href="formCarrinho">Voltar às compras</a>
 </body>
+
 </html>
