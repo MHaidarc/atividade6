@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>formulario carrinho</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <form th:action="@{/cadastroCarrinho}" th:method="post">
-        <label for="id">insira ID:</label>
-        <input type="number" th:name="id">
-        <br>
-        <label for="nome">insira nome: </label>
-        <input type="text" th:name="nome">
-        <br>
-        <label for="preco">insira preço:</label>
-        <input type="number" th:name="preco" min="0.01" step="0.01">
-        <br>
-        <label for="quantidade">insira quantidade:</label>
-        <input type="number" th:name="quantidade">
-        <br>
-        <button type="submit">Enviar</button>
+        <div>
+            <div class="formCarrinho">
+                <label for="id">insira ID:</label>
+                <input type="number" th:name="id">
+                <br>
+            </div>
+            <div class="formCarrinho">
+                <label for="nome">insira nome: </label>
+                <input type="text" th:name="nome">
+                <br>
+            </div>
+            <div class="formCarrinho">
+                <label for="preco">insira preço:</label>
+                <input type="number" th:name="preco" min="0.01" step="0.01">
+                <br>
+            </div>
+            <div class="formCarrinho">
+                <label for="quantidade">insira quantidade:</label>
+                <input type="number" th:name="quantidade">
+                <br>
+            </div>
+            <div class="formCarrinho">
+                <button type="submit">Enviar</button>
+            </div>
+        </div>
     </form>
 </body>
+
 </html>

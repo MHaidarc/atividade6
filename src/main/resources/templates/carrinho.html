@@ -6,38 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <h1>visualiza os baguio ai</h1>
     <p th:if="${vazio}">ta vazio vei</p>
     <table th:unless="${vazio}">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="produto : ${produtos}">
-                <td th:text="${produto.id}"></td>
-                <td th:text="${produto.nome}"></td>
-                <td th:text="${produto.preco}"></td>
-                <td th:text="${produto.quantidade}"></td>
-            </tr>
-            <tr>
-                <td>X</td>
-                <td><strong>total:</strong></td>
-                <td th:text="${precoTotal}"></td>
-                <td th:text="${quantTotal}"></td>
-            </tr>
-        </tbody>
+        <tr>
+            <td>
+                <table class="table-grid">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                        <th>Remover</th>
+                    </tr>
+                    <tr th:each="produto : ${produtos}">
+                        <td th:text="${produto.id}"></td>
+                        <td th:text="${produto.nome}"></td>
+                        <td th:text="${produto.preco}"></td>
+                        <td>
+                            <form class="pTable" th:action="@{/rmQuant}" th:method="post">
+                                <input type="hidden" th:name="id" th:value="${produto.id}">
+                                <button type="submit">-</button>
+                            </form>
+                            <p class="pTable">[[${produto.quantidade}]]</p>
+                            <form class="pTable" th:action="@{/addQuant}" th:method="post">
+                                <input type="hidden" th:name="id" th:value="${produto.id}">
+                                <button type="submit">+</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/removerProduto}" th:method="post">
+                                <input type="hidden" th:name="id" th:value="${produto.id}">
+                                <button type="submit">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table-grid">
+                    <tr>
+                        <th>Preço Total</th>
+                        <th>Quantidade Total</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${precoTotal}"></td>
+                        <td th:text="${quantTotal}"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
     </table>
-    <a href="formCarrinho">Voltar às compras</a>
     <br>
-    <a href="formDeleteCarrinho">Editar carrinho</a>
+
+    <form th:action="@{/rmCarrinho}" th:method="post">
+        <button type="submit">Limpar Carrinho</button>
+    </form>
+    <br>
+
+    <a href="formCarrinho">Voltar às compras</a>
 </body>
 
 </html>

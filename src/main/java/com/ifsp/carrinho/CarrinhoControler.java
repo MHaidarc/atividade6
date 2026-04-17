@@ -46,12 +46,6 @@ public class CarrinhoControler {
         return "carrinho.html";
     }
 
-    @GetMapping("/formDeleteCarrinho")
-    public String formDeleteCarrinho() {
-
-        return "formDeleteCarrinho.html";
-    }
-
     @PostMapping("/removerProduto")
     public String removerProduto(@RequestParam int id) {
         Iterator<Produto> produtoIterator = produtos.iterator();
@@ -77,11 +71,29 @@ public class CarrinhoControler {
 
     @PostMapping("/rmQuant")
     public String rmQuant(@RequestParam int id) {
+        try {
+            for (Produto produto : produtos) {
+                if (produto.getId() == id) {
+                    produto.setQuantidade(produto.getQuantidade() - 1);
 
-        for (Produto produto : produtos) {
-            produto.setQuantidade(produto.getQuantidade() - 1);
+                    if (produto.getQuantidade() == 0) {
+                        removerProduto(id);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            // não fazer nada pra tratar :P
+            // try catch MALICIOSO
         }
 
         return "redirect:/carrinho";
     }
+
+    @PostMapping("/rmCarrinho")
+    public String postMethodName() {
+        produtos.clear();
+        return "redirect:/carrinho";
+    }
+
 }
