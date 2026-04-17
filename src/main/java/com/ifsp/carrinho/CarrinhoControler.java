@@ -25,6 +25,7 @@ public class CarrinhoControler {
             @RequestParam int quantidade) {
 
         produtos.add(new Produto(id, nome, preco, quantidade));
+
         return "redirect:/carrinho";
     }
 
@@ -63,7 +64,9 @@ public class CarrinhoControler {
     public String addQuant(@RequestParam int id) {
 
         for (Produto produto : produtos) {
-            produto.setQuantidade(produto.getQuantidade() + 1);
+            if (produto.getId() == id) {
+                produto.setQuantidade(produto.getQuantidade() + 1);
+            }
         }
 
         return "redirect:/carrinho";
@@ -71,21 +74,18 @@ public class CarrinhoControler {
 
     @PostMapping("/rmQuant")
     public String rmQuant(@RequestParam int id) {
-        try {
-            for (Produto produto : produtos) {
-                if (produto.getId() == id) {
-                    produto.setQuantidade(produto.getQuantidade() - 1);
+        boolean deveRemover = false;
+        for (Produto produto : produtos) {
+            if (produto.getId() == id) {
+                produto.setQuantidade(produto.getQuantidade() - 1);
 
-                    if (produto.getQuantidade() == 0) {
-                        removerProduto(id);
-                    }
+                if (produto.getQuantidade() == 0) {
+                    deveRemover = true;
                 }
             }
-
-        } catch (Exception e) {
-            // não fazer nada pra tratar :P
-            // try catch MALICIOSO
         }
+        if (deveRemover)
+            removerProduto(id);
 
         return "redirect:/carrinho";
     }
