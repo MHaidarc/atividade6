@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class CarrinhoControler {
+public class CarrinhoController {
     private List<Produto> produtos = new ArrayList<>();
 
     @GetMapping("/formCarrinho")
@@ -29,11 +29,21 @@ public class CarrinhoControler {
         return "redirect:/carrinho";
     }
 
+    public static double arredondar(double valor, int casas) {
+        if (casas < 0)
+            throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, casas);
+        valor = valor * factor;
+        long tmp = Math.round(valor);
+        return (double) tmp / factor;
+    }
+
     @GetMapping("/carrinho")
     public String carrinho(Model model) {
         boolean vazio = produtos.isEmpty();
-        int precoTotal = 0;
-        int quantTotal = 0;
+        double precoTotal = 0.0;
+        double quantTotal = 0.0;
 
         for (Produto produto : produtos) {
             precoTotal += produto.getPreco() * produto.getQuantidade();
@@ -41,7 +51,7 @@ public class CarrinhoControler {
         }
 
         model.addAttribute("quantTotal", quantTotal);
-        model.addAttribute("precoTotal", precoTotal);
+        model.addAttribute("precoTotal", arredondar(precoTotal, 2));
         model.addAttribute("vazio", vazio);
         model.addAttribute("produtos", produtos);
         return "carrinho.html";
