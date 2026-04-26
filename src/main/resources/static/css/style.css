@@ -1,75 +1,75 @@
 body {
-    background-color: #eff1f5;
-    color: #4c4f69;
-    font-family: 'JetBrains Mono', monospace;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
-    margin: 1em auto;
-    max-width: 40em;
-    padding: 0 .62em 3.24em;
+  background-color: #eff1f5;
+  color: #4c4f69;
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  margin: 1em auto;
+  max-width: 40em;
+  padding: 0 0.62em 3.24em;
 }
 
 h1,
 h2,
 h3 {
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
 @media print {
-    body {
-        max-width: none;
-    }
+  body {
+    max-width: none;
+  }
 }
 
 .table-grid {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.table-grid>tbody>tr>th {
-    padding: 0;
+.table-grid > tbody > tr > th {
+  padding: 0;
 }
 
-.table-grid>thead>tr>th,
-.table-grid>tbody>tr>th,
-.table-grid>tfoot>tr>th,
-.table-grid>thead>tr>td,
-.table-grid>tbody>tr>td,
-.table-grid>tfoot>tr>td {
-    border: 1px solid #4c4f69;
-    padding: 5px;
+.table-grid > thead > tr > th,
+.table-grid > tbody > tr > th,
+.table-grid > tfoot > tr > th,
+.table-grid > thead > tr > td,
+.table-grid > tbody > tr > td,
+.table-grid > tfoot > tr > td {
+  border: 1px solid #4c4f69;
+  padding: 5px;
 }
 
 .table-grid .table-grid td,
 .table-grid .table-grid th {
-    border-top: 1px solid #4c4f69;
-    border-right: 1px solid #4c4f69;
-    border-bottom: 0;
-    border-left: 0;
+  border-top: 1px solid #4c4f69;
+  border-right: 1px solid #4c4f69;
+  border-bottom: 0;
+  border-left: 0;
 }
 
 .table-grid .table-grid td:last-child,
 .table-grid .table-grid th:last-child {
-    border-right: 0;
+  border-right: 0;
 }
 
 .pTable {
-    display: inline-block;
+  display: inline-block;
 }
 
 .formCarrinho {
-    padding: 1px;
+  padding: 1px;
 }
 
 .formCarrinho label {
-    float: left;
+  float: left;
 }
 
 .formCarrinho input {
-    float: right;
+  float: right;
 }
 
 .formCarrinho button {
-    float: right;
+  float: right;
 }
